@@ -1,4 +1,5 @@
 .idea/
+venv/
 
 # Latex
 ## Core latex/pdflatex auxiliary files:
