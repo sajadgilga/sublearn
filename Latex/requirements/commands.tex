@@ -1,0 +1,65 @@
+%_______________mathematical macros:__________________%
+\newcommand{\tarc}{\mbox{\large$\frown$}}
+\newcommand{\arc}[1]{\stackrel{\tarc}{#1}}
+\newcommand{\norm}[1]{\left|\left| #1 \right|\right|}
+\newcommand{\on}[2]{\Big|_{#1}^{#2}}
+\newcommand{\inn}[1]{\langle #1\rangle}
+\newcommand{\LO}[1]{\mathcal{L}(#1)}
+\newcommand{\img}{\mathrm{Img }\ }
+\newcommand{\pr}[1]{\left(#1\right)}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\qed}{\hfill $\blacksquare$}
+\newcommand{\ped}{\hfill $\square$}
+\newcommand{\size}[1]{\left|#1\right|}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\spn}[1]{\mathrm{span}\left(#1\right)}
+\newcommand{\pd}{_/%
+}
+\newcommand{\tw}{\textwidth}
+\newcommand{\findent}{}
+
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1 cm}}
+\newcolumntype{N}[1]{>{\flushleft\arraybackslash}m{#1 cm}}
+
+%\newcounter{mamad}
+%\newcommand{\chap}[1]{
+%	\refstepcounter{mamad}
+%	\part*{\themamad\ \ #1}
+%	\addcontentsline{toc}{part}{\themamad\hspace{0.25 cm} #1}
+%	\stepcounter{chapter}
+%	\chapter*{#1}
+%}
+
+\definecolor{mycolor}{rgb}{0.85, 0.85, 0.85}
+\newtcbox{\mybox}{on line,
+	colframe=mycolor,colback=mycolor!10!white,
+	boxrule=0.5pt,arc=4pt,boxsep=0pt,left=6pt,right=6pt,top=4pt,bottom=4pt}
+
+\newcommand{\chap}[1]{
+\stepcounter{chapter}
+\chapter*{\thechapter\ \ #1}
+\addcontentsline{toc}{chapter}{\thechapter\hspace{0.25 cm} #1}}
+
+\newcommand{\efn}[1]{\LTRfootnote{ #1}}
+
+\newtheorem{definition}{تعریف}
+
+\newcommand{\teamMemOne}{کیارش بنی‌هاشم%
+}
+\newcommand{\stdIdOne}{96109963}
+
+\newcommand{\teamMemTwo}{سیّد محمدصادق مهدوی%
+}
+\newcommand{\stdIdTwo}{96110294}
+
+\newcommand{\teamMemThree}{بنیامین قاسمی‌نیا%
+}
+\newcommand{\stdIdThree}{96109833}
+
+\newcommand{\teamMemFour}{آریو لطفی%
+}
+\newcommand{\stdIdFour}{96110283}
+
+\newcommand{\shortHref}[2]{\hyperref{#1}{}{}{#2}}
