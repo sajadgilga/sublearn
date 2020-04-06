@@ -3,5 +3,10 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def user_test(request):
-    return render(request, 'home/index.html', context={})
+def user_home(request):
+    context = {
+            "title": "Kiarash",
+            }
+    return render(request, 'home/index.html', context=context)
+
+
