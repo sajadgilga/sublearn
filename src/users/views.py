@@ -10,7 +10,7 @@ def user_home(request):
     context = {
             "title": "User home",
             }
-    return render(request, 'home/index.html', context=context)
+    return render(request, 'users/home.html', context=context)
 
 def user_register(request):
     if request.method == 'POST':
@@ -27,10 +27,7 @@ def user_register(request):
             "title": "User register",
             "form": form
             }
-    return render(request, 'home/register.html', context=context)
+    return render(request, 'users/register.html', context=context)
 
-def user_login(request):
-    context = {
-            "title": "User Login",
-            }
-    return render(request, 'home/index.html', context=context)
+def user_index(request):
+    return render(request, 'index.html')
