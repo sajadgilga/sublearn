@@ -17,6 +17,8 @@
             Kiarash
         {% endif %}
     </title>
+    <style type='text/css'>
+     </style>
 </head>
 <body>
 
@@ -29,20 +31,30 @@
     <a class="item">Company</a>
     <a class="item">Careers</a>
     <div class="right menu">
-      <div class="item">
-          {% if user.is_authenticated %}
-              <a class="ui button" href= "{% url 'users:logout' %}">
-                  Log out
-              </a>
-          {% else %}
-              <a class="ui button" href= "{% url 'users:login' %}">
-                  Log in
-              </a>
-          {% endif %}
-      </div>
-      <div class="item">
-        <a class="ui primary button">Sign Up</a>
-      </div>
+        {% if user.is_authenticated %}
+        <div class="item">
+            <div class="ui olive button" style="display: flex;justify-content: center;align-items: center; pointer-events: none;">
+                Good Evening {{ user.username }}
+            </div>
+        </div>
+        <div class="item">
+            <a class="ui teal button" href="{% url 'users:profile' %}">Go to profile</a>
+        </div>
+        {% endif %}
+        <div class="item">
+            {% if user.is_authenticated %}
+                <a class="ui button" href= "{% url 'users:logout' %}">
+                    Log out
+                </a>
+            {% else %}
+                <a class="ui button" href= "{% url 'users:login' %}">
+                    Log in
+                </a>
+            {% endif %}
+        </div>
+        <div class="item">
+          <a class="ui primary button">Sign Up</a>
+        </div>
     </div>
   </div>
 </div>
