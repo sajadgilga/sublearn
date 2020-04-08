@@ -21,7 +21,7 @@ def user_register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f"Account created for {username}!")
+            messages.success(request, f"Account created for {username}! You can login now")
             return redirect("users:login")
         else:
             print('hello')
@@ -46,10 +46,8 @@ def user_profile(request):
 
     u_form = UserUpdateForm(instance=request.user)
     p_form = ProfileUpdateForm(instance=request.user.profile)
-    return render(request, 'users/profile.html', context={
-        'u_form': u_form,
-        'p_form': p_form,
-        })
+
+    return render(request, 'users/profile1.html', context={'forms':[u_form, p_form]})
 
 def user_index(request):
     return render(request, 'index.html')
