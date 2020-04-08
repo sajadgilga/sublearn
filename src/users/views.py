@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .forms import UserUpdateForm, ProfileUpdateForm
+from .forms import UserUpdateForm, ProfileUpdateForm, UserRegisterForm
 
 
 # Create your views here.
@@ -17,14 +17,16 @@ def user_home(request):
 
 def user_register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f"Account created for {username}!")
             return redirect("users:login")
+        else:
+            print('hello')
     else:
-        form = UserCreationForm()
+        form = UserRegisterForm()
 
     context = {
             "title": "User register",
