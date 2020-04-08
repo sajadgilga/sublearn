@@ -375,4 +375,4 @@ local_settings.py
 db.sqlite3
 
 #the images for media
-media/profile_pics/*
+profile_pics/
