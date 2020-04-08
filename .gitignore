@@ -373,3 +373,6 @@ local_settings.py
 
 .env
 db.sqlite3
+
+#the images for media
+media/profile_pics/*
