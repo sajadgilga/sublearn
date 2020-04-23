@@ -6,73 +6,110 @@
     <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
     <script
-        src="https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-        crossorigin="anonymous"></script>
-
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+    
     <title>
-        {% if title %}
-            {{ title }}
-        {% else %}
-            Kiarash
-        {% endif %}
+        EngVocab
     </title>
     <style type='text/css'>
-     </style>
+    </style>
 </head>
 <body>
-
-<!-- Following Menu -->
-{% block menu %}
-<div class="ui large top menu" style="margin:0">
-  <div class="ui container">
-    <a class="active item">Home</a>
-    <a class="item">Work</a>
-    <a class="item">Company</a>
-    <a class="item">Careers</a>
-    <div class="right menu">
-        {% if user.is_authenticated %}
-        <div class="item">
-            <div class="ui olive button" style="display: flex;justify-content: center;align-items: center; pointer-events: none;">
-                Good Evening {{ user.username }}
-            </div>
-        </div>
-        <div class="item">
-            <a class="ui teal button" href="{% url 'users:profile' %}">Go to profile</a>
-        </div>
-        {% endif %}
-        <div class="item">
-            {% if user.is_authenticated %}
-                <a class="ui button" href= "{% url 'users:logout' %}">
-                    Log out
-                </a>
-            {% else %}
-                <a class="ui button" href= "{% url 'users:login' %}">
-                    Log in
-                </a>
-            {% endif %}
-        </div>
-        <div class="item">
-            <a class="ui primary button" href="{% url 'users:register' %}">Sign Up</a>
-        </div>
-    </div>
-  </div>
-</div>
-{% endblock %}
-
-<!-- Page Contents -->
-    {% if messages %}
-        {% for message in messages %}
-            <div class="ui container" style="margin-top: 1em;">
-                <div class="ui olive message">
-                    {{ message }}
+    
+    <!-- Following Menu -->
+    {% block menu %}
+    <div class="ui large top menu" style="margin:0">
+        <div class="ui container">
+            <a class="active item"><i class="home large icon"></i></a>
+            <div class="right menu">
+                <div class="item">
+                    {% if user.is_authenticated %}
+                    <a class="ui button" href= "{% url 'users:logout' %}">
+                        Log out
+                    </a>
+                    {% else %}
+                    <a class="ui button" href= "{% url 'users:login' %}">
+                        Log in
+                    </a>
+                    {% endif %}
+                </div>
+                <div class="item">
+                    {% if not user.is_authenticated %}
+                    <a class="ui primary button" href="{% url 'users:register' %}">Sign Up</a>
+                    {% endif %}
                 </div>
             </div>
-        {% endfor %}
+        </div>
+    </div>
+    {% endblock %}
+    
+    <!-- Page Contents -->
+    {% if messages %}
+    {% for message in messages %}
+    <div class="ui container" style="margin-top: 1em;">
+        <div class="ui olive message">
+            {{ message }}
+        </div>
+    </div>
+    {% endfor %}
     {% endif %}
-{% block content %}
-{% endblock %}
+    
+    <div class="ui grid" style="margin: auto; min-height: 80%;">
+        {% if user.is_authenticated %}
+        <div class="four wide column">
+            <div class="ui large vertical menu">
+                <a class="item active" href="{% url 'users:profile' %}">
+                    Profile
+                </a>
+                <a class="item">
+                    <div class="ui small teal label">1</div>
+                    Second Item
+                </a>
+                <a class="item">
+                    <div class="ui small label">1</div>
+                    Third Item
+                </a>
+            </div>
+        </div>
+        {% endif %}
+        <div class="twelve wide stretched column" style="margin: auto;">
+            <div class="ui segment">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
 
+<div class="ui inverted vertical footer segment">
+    <div class="ui container">
+      <div class="ui stackable inverted divided equal height stackable grid">
+        <div class="three wide column">
+          <h4 class="ui inverted header">About</h4>
+          <div class="ui inverted link list">
+            <a href="https://semantic-ui.com/examples/homepage.html#" class="item">Sitemap</a>
+            <a href="https://semantic-ui.com/examples/homepage.html#" class="item">Contact Us</a>
+            <a href="https://semantic-ui.com/examples/homepage.html#" class="item">Religious Ceremonies</a>
+            <a href="https://semantic-ui.com/examples/homepage.html#" class="item">Gazebo Plans</a>
+          </div>
+        </div>
+        <div class="three wide column">
+          <h4 class="ui inverted header">Services</h4>
+          <div class="ui inverted link list">
+            <a href="https://semantic-ui.com/examples/homepage.html#" class="item">Banana Pre-Order</a>
+            <a href="https://semantic-ui.com/examples/homepage.html#" class="item">DNA FAQ</a>
+            <a href="https://semantic-ui.com/examples/homepage.html#" class="item">How To Access</a>
+            <a href="https://semantic-ui.com/examples/homepage.html#" class="item">Favorite X-Men</a>
+          </div>
+        </div>
+        <div class="seven wide column">
+          <h4 class="ui inverted header">Footer Header</h4>
+          <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-
-</body></html>
+</html>
