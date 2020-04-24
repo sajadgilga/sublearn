@@ -5,5 +5,4 @@ Don't add any functions in this app except the index page
 """
 
 def index(request):
-#    return render(request, 'index.html')
-    return redirect('users:home')
+   return render(request, 'index.html')
