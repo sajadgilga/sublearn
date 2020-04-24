@@ -1,1 +1,4 @@
+googletrans
 Django==3.0.4
+wordfreq==2.2.2
+googletrans=2.4.0
