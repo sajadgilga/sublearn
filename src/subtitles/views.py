@@ -21,7 +21,8 @@ def sub_processor(request):
             request.session['filename'] = name[:name.rfind('.')] + "_enchanted" + file_type
             request.session['content'] = result_text
             request.session['new_words'] = new_words
-            return render(request, 'subtitles/succeed.html', {'count': len(new_words), 'name': name[:name.rfind('.')]})
+            return render(request, 'subtitles/succeed.html', {'count': len(new_words), 'name': name[:name.rfind('.')],
+                                                              'title': 'Subtitle Result'})
         elif "movie_name" in request.POST:
             movie_set = MovieSet(movie_name=request.POST['movie_name'], user=request.user)
             movie_set.save()
@@ -29,9 +30,9 @@ def sub_processor(request):
                 en, fa = line.split(" : ")
                 flashcard = Flashcard(english_word=en, translation=fa, movie=movie_set)
                 flashcard.save()
-            return render(request, 'subtitles/flash_added.html')
+            return render(request, 'subtitles/flash_added.html', {'title': 'Subtitle Result'})
 
-    return render(request, 'subtitles/upload.html')
+    return render(request, 'subtitles/upload.html', {'title': 'Upload Subtitle'})
 
 
 def download_sub(request):

@@ -7,13 +7,12 @@ from django.contrib import messages
 from .forms import UserUpdateForm, ProfileUpdateForm, UserRegisterForm
 
 
-# Create your views here.
-
 def user_home(request):
     context = {
-            "title": "User home",
+            "title": "User Home",
             }
     return render(request, 'users/home.html', context=context)
+
 
 def user_register(request):
     if request.method == 'POST':
@@ -29,7 +28,7 @@ def user_register(request):
         form = UserRegisterForm()
 
     context = {
-            "title": "User register",
+            "title": "User Register",
             "form": form
             }
     return render(request, 'users/register.html', context=context)
@@ -47,7 +46,7 @@ def user_profile(request):
     u_form = UserUpdateForm(instance=request.user)
     p_form = ProfileUpdateForm(instance=request.user.profile)
 
-    return render(request, 'users/profile1.html', context={'forms':[u_form, p_form]})
+    return render(request, 'users/profile1.html', context={'forms':[u_form, p_form], 'title':'Profile'})
 
 def user_index(request):
     return render(request, 'index.html')
