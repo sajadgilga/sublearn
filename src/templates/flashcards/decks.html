@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="ui container" style="margin-top: 1em;">
+        {% if movie_sets %}
+<!--            <ul>-->
+            {% for movie_set in movie_sets %}
+                <a class="fluid ui button" href="{% url 'flashcards:show_flashcards' movie_set.id %}">{{ movie_set.movie_name }}</a>
+            {% endfor %}
+<!--            </ul>-->
+        {% else %}
+            <h2>You've not created any decks.</h2>
+        {% endif %}
+    </div>
+{% endblock content %}
