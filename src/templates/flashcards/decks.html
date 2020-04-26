@@ -4,7 +4,7 @@
         {% if movie_sets %}
         <div class="ui cards">
             {% for movie_set in movie_sets %}
-                <button href="{% url 'flashcards:show_flashcards' movie_set.id %}" class="ui inverted violet labeled icon button" style="font-size: 18pt; margin-right: 10pt; margin-bottom: 10pt;">
+                <a  href="{% url 'flashcards:show_flashcards' movie_set.id %}" class="ui inverted violet button" style="font-size: 18pt; margin-bottom: 10pt;">
                     <!-- <a href="{% url 'flashcards:show_flashcards' movie_set.id %}" style="align-items: center;"> -->
                         {{ movie_set.movie_name }}
                         <!-- <div class="content center aligned front">
@@ -15,7 +15,7 @@
                             <br>
                         </div> -->
                     <!-- </a> -->
-                    </button>
+                    </a>
             {% endfor %}
         </div>
         {% else %}
