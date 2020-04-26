@@ -1,20 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="ui container" style="margin-top: 1em;">
+    <div class="ui container" style="margin-top: 5em; margin-bottom: 5em;">
         {% if movie_sets %}
         <div class="ui cards">
             {% for movie_set in movie_sets %}
-                <div class="ui teal card">
-                    <a href="{% url 'flashcards:show_flashcards' movie_set.id %}">
-                        <div class="content center aligned front">
+                <button href="{% url 'flashcards:show_flashcards' movie_set.id %}" class="ui inverted violet labeled icon button" style="font-size: 18pt; margin-right: 10pt; margin-bottom: 10pt;">
+                    <!-- <a href="{% url 'flashcards:show_flashcards' movie_set.id %}" style="align-items: center;"> -->
+                        {{ movie_set.movie_name }}
+                        <!-- <div class="content center aligned front">
                             <br>
                             <br>
-                            <h2 class="ui purple header"> {{ movie_set.movie_name }} </h2>
+                            <h2 class="ui purple header" style="color: blue;"> {{ movie_set.movie_name }} </h2>
                             <br>
                             <br>
-                        </div>
-                    </a>
-                </div>
+                        </div> -->
+                    <!-- </a> -->
+                    </button>
             {% endfor %}
         </div>
         {% else %}
