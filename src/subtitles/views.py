@@ -13,15 +13,13 @@ def sub_processor(request):
             uploaded_sub = request.FILES['subtitle']
             name = uploaded_sub.name
             file_type = name[name.rfind('.'):]
-            text = uploaded_sub.read().decode('iso-8859-1')
-            result = process_sub(text, file_type, 3)
+            text = uploaded_sub.read()
+            result_words, result_text = process_sub(text, file_type, 3)
             new_words = []
-            for word in result.keys():
-                replacement = "{0} : {1}".format(word, result[word][0])
-                text = text.replace(word, replacement)
-                new_words.append(replacement)
+            for word, trans in result_words:
+                new_words.append("{0} : {1}".format(word, trans))
             request.session['filename'] = name[:name.rfind('.')] + "_enchanted" + file_type
-            request.session['content'] = text
+            request.session['content'] = result_text
             request.session['new_words'] = new_words
             return render(request, 'subtitles/succeed.html', {'count': len(new_words), 'name': name[:name.rfind('.')]})
         elif "movie_name" in request.POST:
@@ -32,8 +30,6 @@ def sub_processor(request):
                 flashcard = Flashcard(english_word=en, translation=fa, movie=movie_set)
                 flashcard.save()
             return render(request, 'subtitles/flash_added.html')
-
-
 
     return render(request, 'subtitles/upload.html')
 

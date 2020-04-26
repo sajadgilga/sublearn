@@ -2,11 +2,21 @@
 {% block content %}
     <div class="ui container" style="margin-top: 1em;">
         {% if movie_sets %}
-<!--            <ul>-->
+        <div class="ui cards">
             {% for movie_set in movie_sets %}
-                <a class="fluid ui button" href="{% url 'flashcards:show_flashcards' movie_set.id %}">{{ movie_set.movie_name }}</a>
+                <div class="ui teal card">
+                    <a href="{% url 'flashcards:show_flashcards' movie_set.id %}">
+                        <div class="content center aligned front">
+                            <br>
+                            <br>
+                            <h2 class="ui purple header"> {{ movie_set.movie_name }} </h2>
+                            <br>
+                            <br>
+                        </div>
+                    </a>
+                </div>
             {% endfor %}
-<!--            </ul>-->
+        </div>
         {% else %}
             <h2>You've not created any decks.</h2>
         {% endif %}
