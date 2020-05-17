@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from subtitles.services import process_sub
+from .services import process_sub
 from mimetypes import guess_type
 from flashcards.models import MovieSet, Flashcard
 

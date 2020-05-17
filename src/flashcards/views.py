@@ -1,8 +1,13 @@
+import redis
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from flashcards.models import MovieSet
 
+from EnglishLearning import settings
+from .models import MovieSet
+
+redis_instance = redis.StrictRedis(host=settings.REDIS_HOST,
+                                  port=settings.REDIS_PORT, db=0)
 
 @login_required
 def load_decks(request):
