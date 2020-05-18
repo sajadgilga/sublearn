@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from rest_framework import status
+from rest_framework.response import Response
 
 from .forms import UserUpdateForm, ProfileUpdateForm, UserRegisterForm
 
@@ -23,7 +25,7 @@ def user_register(request):
             messages.success(request, f"Account created for {username}! You can login now")
             return redirect("users:login")
         else:
-            print('hello')
+            return Response(status=status.HTTP_400_BAD_REQUEST)
     else:
         form = UserRegisterForm()
 

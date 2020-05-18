@@ -1,12 +1,17 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
 from .services import process_sub
 from mimetypes import guess_type
 from flashcards.models import MovieSet, Flashcard
 
 
 @login_required
+@api_view(['POST', 'GET'])
 def sub_processor(request):
     if request.method == 'POST':
         if 'subtitle' in request.FILES:
@@ -21,8 +26,9 @@ def sub_processor(request):
             request.session['filename'] = name[:name.rfind('.')] + "_enchanted" + file_type
             request.session['content'] = result_text
             request.session['new_words'] = new_words
-            return render(request, 'subtitles/succeed.html', {'count': len(new_words), 'name': name[:name.rfind('.')],
-                                                              'title': 'Subtitle Result'})
+            return Response({'count': len(new_words), 'name': name[:name.rfind('.')]})
+            # return render(request, 'subtitles/succeed.html', {'count': len(new_words), 'name': name[:name.rfind('.')],
+            #                                                   'title': 'Subtitle Result'})
         elif "movie_name" in request.POST:
             movie_set = MovieSet(movie_name=request.POST['movie_name'], user=request.user)
             movie_set.save()
@@ -30,9 +36,10 @@ def sub_processor(request):
                 en, fa = line.split(" : ")
                 flashcard = Flashcard(english_word=en, translation=fa, movie=movie_set)
                 flashcard.save()
-            return render(request, 'subtitles/flash_added.html', {'title': 'Subtitle Result'})
+            # return render(request, 'subtitles/flash_added.html', {'title': 'Subtitle Result'})
 
-    return render(request, 'subtitles/upload.html', {'title': 'Upload Subtitle'})
+    return Response(status=status.HTTP_200_OK)
+    # return render(request, 'subtitles/upload.html', {'title': 'Upload Subtitle'})
 
 
 def download_sub(request):
