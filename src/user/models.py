@@ -28,9 +28,15 @@ class Payment(models.Model):
 
 
 class Subtitle(models.Model):
-    text = models.CharField()
+    text = models.CharField(max_length=10000)
     upload_time = models.DateTimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class Word(models.Model):
+    english_word = models.CharField(max_length=30)
+    translation = models.CharField(max_length=30)
+    difficulty = models.FloatField()
 
 
 class Exam(models.Model):
@@ -38,12 +44,6 @@ class Exam(models.Model):
     score = models.FloatField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     words = models.ManyToManyField(Word)
-
-
-class Word(models.Model):
-    english_word = models.CharField()
-    translation = models.CharField()
-    difficulty = models.CharField()
 
 
 class Flashcard(models.Model):

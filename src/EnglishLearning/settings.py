@@ -39,7 +39,8 @@ INSTALLED_APPS = [
 
     'users',
     'flashcards.apps.FlashcardsConfig',
-    'subtitles'
+    'subtitles',
+    'user'
 ]
 
 MIDDLEWARE = [
